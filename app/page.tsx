@@ -33,50 +33,68 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-100 px-4 py-12">
-      <div className="w-full max-w-md rounded-2xl border border-zinc-300 bg-white p-8 shadow-md">
-        <h1 className="mb-6 text-3xl font-bold text-zinc-900 text-center">
-          midKnight Sign In
-        </h1>
-        <p className="mb-4 text-sm text-zinc-600">
-          No sign up; use existing Firebase account.
-        </p>
+    <div className="min-h-screen flex items-center justify-center px-4 py-8 sm:py-12 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <label className="block">
-            <span className="text-sm font-medium text-zinc-700">Email</span>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-zinc-300 p-2 focus:border-indigo-500 focus:outline-none"
-              required
-            />
-          </label>
+      <div className="w-full max-w-md">
+        {/* Glass effect card */}
+        <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-8 sm:p-10 shadow-2xl">
+          <div className="text-center mb-8">
+            <h1 className="mb-2 text-4xl sm:text-5xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+              midKnight
+            </h1>
+            <p className="text-sm text-white/60">Client Management System</p>
+          </div>
 
-          <label className="block">
-            <span className="text-sm font-medium text-zinc-700">Password</span>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-zinc-300 p-2 focus:border-indigo-500 focus:outline-none"
-              required
-            />
-          </label>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block">
+                <span className="text-sm font-semibold text-white/90 mb-2 inline-block">Email Address</span>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm px-4 py-3 text-white placeholder-white/40 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+                  placeholder="your@email.com"
+                  required
+                />
+              </label>
+            </div>
 
-          {error ? <p className="text-sm text-red-600">{error}</p> : null}
+            <div>
+              <label className="block">
+                <span className="text-sm font-semibold text-white/90 mb-2 inline-block">Password</span>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm px-4 py-3 text-white placeholder-white/40 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+                  placeholder="••••••••"
+                  required
+                />
+              </label>
+            </div>
 
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700"
-          >
-            Sign In
-          </button>
-        </form>
+            {error && <p className="text-sm text-pink-400 bg-pink-500/10 border border-pink-500/20 rounded-lg p-3">{error}</p>}
 
-        <div className="mt-6 text-center text-xs text-zinc-500">
-          Make sure you have an account in Firebase Auth before signing in.
+            <button
+              type="submit"
+              className="w-full rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-3 font-semibold text-white hover:from-purple-500 hover:to-pink-500 shadow-lg hover:shadow-xl hover:shadow-purple-500/50 active:scale-95"
+            >
+              Sign In
+            </button>
+          </form>
+
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <p className="text-xs text-white/50 text-center">
+              Firebase Authentication Required<br />
+              <span className="text-white/40">Contact admin for account setup</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
