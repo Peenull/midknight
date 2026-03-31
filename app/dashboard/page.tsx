@@ -68,6 +68,7 @@ export default function DashboardPage() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [gender, setGender] = useState("");
   const [employmentStatus, setEmploymentStatus] = useState("");
@@ -201,6 +202,7 @@ export default function DashboardPage() {
     setAddress("");
     setCity("");
     setState("");
+    setCountry("");
     setPostalCode("");
     setGender("");
     setEmploymentStatus("");
@@ -227,6 +229,7 @@ export default function DashboardPage() {
         address: address.trim(),
         city: city.trim(),
         state: state.trim(),
+        country: country.trim(),
         postalCode: postalCode.trim(),
         gender: gender.trim(),
         employmentStatus: employmentStatus.trim(),
@@ -295,7 +298,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen px-4 py-8 text-white relative overflow-hidden">
       {/* Animated background */}
-      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
+      <div className="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-purple-950 to-slate-950">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-b from-purple-500/10 to-transparent rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-t from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
       </div>
@@ -306,7 +309,7 @@ export default function DashboardPage() {
           <div className="flex items-start justify-between gap-4 flex-col sm:flex-row sm:items-center">
             <div>
               <h1 className="text-3xl sm:text-4xl font-black text-white">
-                Dashboard
+                Mid Knight
               </h1>
               <p className="text-sm text-white/60 mt-2">
                 Welcome back,{" "}
@@ -323,7 +326,7 @@ export default function DashboardPage() {
                 </p>
               )}
             </div>
-            <button
+            {/* <button
               onClick={() => {
                 auth.signOut();
                 router.push("/");
@@ -331,7 +334,7 @@ export default function DashboardPage() {
               className="px-4 py-2 rounded-lg bg-red-500/20 border border-red-500/30 text-red-200 hover:bg-red-500/30 hover:border-red-500/50 text-sm font-medium transition-all"
             >
               Sign Out
-            </button>
+            </button> */}
           </div>
         </header>
 
@@ -403,6 +406,12 @@ export default function DashboardPage() {
               value={state}
               onChange={(e) => setState(e.target.value)}
               placeholder="State/Province"
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 backdrop-blur-sm"
+            />
+            <input
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              placeholder="Country"
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 backdrop-blur-sm"
             />
             <input
@@ -627,6 +636,7 @@ export default function DashboardPage() {
               {(selectedClient.address ||
                 selectedClient.city ||
                 selectedClient.state ||
+                selectedClient.country ||
                 selectedClient.postalCode) && (
                 <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                   <p className="text-sm text-white/70 mb-3 font-semibold">
@@ -644,6 +654,11 @@ export default function DashboardPage() {
                         {selectedClient.state
                           ? ", " + selectedClient.state
                           : ""}
+                      </p>
+                    )}
+                    {selectedClient.country && (
+                      <p className="text-sm text-white/80">
+                        {selectedClient.country}
                       </p>
                     )}
                     {selectedClient.postalCode && (
